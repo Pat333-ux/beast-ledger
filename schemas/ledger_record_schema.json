@@ -1,0 +1,51 @@
+JSON
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BEASTCivicLedgerRecordSchema",
+  "type": "object",
+  "properties": {
+    "block_index": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Sequential index of the block in the append-only ledger chain."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "previous_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "description": "SHA-256 hash digest of the preceding block."
+    },
+    "block_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "description": "SHA-256 cryptographic digest of the current block contents."
+    },
+    "payload_data": {
+      "type": "object",
+      "description": "State change or transaction payload being permanently recorded."
+    },
+    "judicial_compliance_hash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "description": "Division 003 approval hash certifying the transaction."
+    },
+    "sentinel_verification_sig": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "description": "Division 005 security verification signature."
+    }
+  },
+  "required": [
+    "block_index",
+    "timestamp",
+    "previous_hash",
+    "block_hash",
+    "payload_data",
+    "judicial_compliance_hash",
+    "sentinel_verification_sig"
+  ],
+  "additionalProperties": false
+}
